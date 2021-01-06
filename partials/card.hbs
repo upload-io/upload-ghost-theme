@@ -2,24 +2,66 @@
 Re-usable card for linking to posts
 --}}
 
-<article class="gh-card {{post_class}}">
-    <a class="gh-card-link" href="{{url}}">
-        {{#if feature_image}}
-            <img class="gh-card-image"
-                srcset="{{img_url feature_image size="s"}} 300w,
-                        {{img_url feature_image size="m"}} 600w,
-                        {{img_url feature_image size="l"}} 1000w,
-                        {{img_url feature_image size="xl"}} 2000w"
-                sizes="(max-width: 1000px) 400px, 700px"
-                src="{{img_url feature_image size="m"}}"
-                alt="{{title}}"
-            />
-        {{/if}}
-        <div class="gh-card-content">
-            <span class="gh-card-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
-            <h2 class="gh-card-title">{{title}}</h2>
-            <p>{{excerpt}}</p>
-            <strong>Read more</strong>
+{{#if featured}}
+    <article>
+        <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-dark bg-img-hero rounded-lg-pseudo transition-3d-hover mb-7" href="{{url}}" style="background-image: url({{img_url feature_image size="m"}});">
+            <div class="card-header border-0 bg-transparent w-100">
+                <div class="media align-items-center">
+                    {{#primary_author}}
+                        <a class="avatar avatar-sm avatar-circle mr-3" href="{{url}}">
+                            <img class="avatar-img" src="{{profile_image}}" alt="{{name}}">
+                        </a>
+                    {{/primary_author}}
+                    <div class="media-body">
+                        {{#primary_author}}
+                            <span class="d-inline-block text-white font-weight-bold">
+                                <a href="{{url}}">{{name}}</a>
+                            </span>
+                        {{/primary_author}}
+                        <small class="d-block text-white-70"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time ><span class="bull">&bull;</span> {{reading_time}}</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer border-0 bg-transparent mt-auto">
+                <h3 class="h2 text-white">{{title}}</h3>
+                <p class="text-white-70 mb-0">{{excerpt}}</p>
+            </div>
+        </a>
+    </article>
+{{else}}
+    <article class="row mb-7">
+        <div class="col-md-5">
+            <div class="card-img bg-img-hero" style="background-image: url({{img_url feature_image size="m"}});width: 100%;height: 300px;"></div>
         </div>
-    </a>
-</article>
+        <div class="col-md-7">
+            <div class="card-body d-flex flex-column h-100 px-0">
+                <span class="d-block mb-2">
+                    {{#if tags}}
+                        {{#foreach tags}}
+                            <a class="font-weight-bold" href={{url}}>{{name}}</a>{{#if @last}}{{else}}, {{/if}}
+                        {{/foreach}}
+                    {{/if}}
+                </span>
+                <h3><a class="text-inherit" href="{{url}}">{{title}}</a></h3>
+                <p>{{excerpt}}</p>
+                <div class="media align-items-center mt-auto">
+                    {{#primary_author}}
+                        <a class="avatar avatar-sm avatar-circle mr-3" href="{{url}}">
+                            <img class="avatar-img" src="{{profile_image}}" alt="{{name}}">
+                        </a>
+                    {{/primary_author}}
+                    <div class="media-body">
+                        {{#primary_author}}
+                            <span class="text-dark">
+                                <a class="d-inline-block text-inherit font-weight-bold" href="{{url}}">{{name}}</a>
+                            </span>
+                        {{/primary_author}}
+                        <small class="d-block"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time ><span class="bull">&bull;</span> {{reading_time}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+{{/if}}
+

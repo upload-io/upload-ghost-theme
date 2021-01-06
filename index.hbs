@@ -1,15 +1,102 @@
 {{!< default}}
 
-<div class="gh-page">
-    <div class="gh-container">
+{{> "header_nav" light_header=true}}
 
-        <div class="gh-postfeed">
-        {{#foreach posts visibility="all"}}
+<main id="content" role="main">
+    <!-- Hero Section -->
+    <div class="position-relative">
+        <!-- Main Slider -->
+        <div id="heroSlider" class="js-slick-carousel slick slick-initialized slick-slider slick-dotted slick-vertical">
 
-            {{> "card"}} {{!-- partials/card.hbs --}}
+            {{#foreach posts visibility="all" limit="1"}}
 
-        {{/foreach}}
+                <div class="js-slide d-flex gradient-x-overlay-sm-dark bg-img-hero min-h-620rem" style="background-image: url({{img_url feature_image size="xl"}});">
+                    <!-- News Block -->
+                    <div class="container d-flex align-items-center min-h-620rem">
+                        <div class="w-lg-40 mr-5">
+                            {{#primary_author}}
+                                <div class="media align-items-center mb-3">
+                                    <div class="avatar avatar-sm avatar-circle mr-3">
+                                        <img class="avatar-img" src="{{profile_image}}" alt="{{name}}">
+                                    </div>
+                                    <div class="media-body">
+                                        <a class="text-white" href="{{url}}">{{name}}</a>
+                                    </div>
+                                </div>
+                            {{/primary_author}}
+
+                            <div class="mb-5">
+                                <h3 class="h1 font-weight-bold text-white">{{title}}</h3>
+                            </div>
+                            <a class="btn btn-primary btn-wide transition-3d-hover" href="{{url}}">Read Article <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- End News Block -->
+                </div>
+
+            {{/foreach}}
+
+        </div>
+        <!-- End Main Slider -->
+    </div>
+    <!-- End Hero Section -->
+
+    <!-- Blogs Section -->
+    <div class="container space-2 space-lg-3">
+        <div class="row justify-content-lg-between">
+            <div class="col-lg-8">
+                {{#foreach posts visibility="all" from="2"}}
+
+                    {{> "card"}} {{!-- partials/card.hbs --}}
+
+                {{/foreach}}
+
+                <!-- Sticky Block End Point -->
+                <div id="stickyBlockEndPoint"></div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="mb-7">
+                    <div class="mb-3">
+                        <h3>Newsletter</h3>
+                    </div>
+
+                    <!-- Form -->
+                    <form class="js-validate mb-2">
+                        <label class="sr-only" for="subscribeSr">Subscribe</label>
+                        <div class="input-group input-group-flush mb-3">
+                            <input type="email" class="form-control form-control-sm" name="email" id="subscribeSr" placeholder="Your email" aria-label="Your email" required
+                                   data-msg="Please enter a valid email address.">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary btn-block">Subscribe</button>
+                    </form>
+                    <!-- End Form -->
+
+                    <p class="small">Get special offers on the latest developments from Front.</p>
+                </div>
+
+                <!-- Sticky Block Start Point -->
+                <div id="stickyBlockStartPoint"></div>
+
+                <div class="js-sticky-block">
+                    <div class="mb-7">
+                        <div class="mb-3">
+                            <h3>Tags</h3>
+                        </div>
+
+                        {{#get 'tags' limit='all' order='count.posts desc'}}
+                            {{#foreach tags}}
+                                <a class="btn btn-xs btn-soft-secondary mb-1" href="{{url}}">{{name}}</a>
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Pagination -->
+        {{pagination}}
+        <!-- End Pagination -->
     </div>
-</div>
+    <!-- End Blogs Section -->
+</main>
