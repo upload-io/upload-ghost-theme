@@ -232,15 +232,13 @@
 
 .kg-bookmark-title {
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.3125rem;
     line-height: 1.3em;
 }
 
 .kg-bookmark-description {
     display: -webkit-box;
-    max-height: 45px;
     margin: 0.5em 0 0 0;
-    font-size: 1.4rem;
     line-height: 1.55em;
     overflow: hidden;
     opacity: 0.8;
@@ -256,7 +254,6 @@
     display: flex;
     align-items: center;
     font-weight: 500;
-    font-size: 1.3rem;
     line-height: 1.3em;
     white-space: nowrap;
     overflow: hidden;
