@@ -4,61 +4,197 @@
 
 {{#post}}
 
-<article class="gh-article {{post_class}}">
 
-    <header class="gh-header gh-canvas">
-        <span class="gh-post-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
-        <h1 class="gh-title">{{title}}</h1>
 
-        {{#if custom_excerpt}}
-        <p class="gh-excerpt">{{custom_excerpt}}</p>
-        {{/if}}
 
-        {{#if feature_image}}
-        <img class="gh-feature-image"
-            srcset="{{img_url feature_image size="s"}} 300w,
-                    {{img_url feature_image size="m"}} 600w,
-                    {{img_url feature_image size="l"}} 1000w,
-                    {{img_url feature_image size="xl"}} 2000w"
-            sizes="(max-width: 1000px) 1000px, 2000px"
-            loading="lazy"
-            src="{{img_url feature_image size="xl"}}"
-            alt="{{title}}"
-        />
-        {{/if}}
-    </header>
 
-    <div class="gh-content gh-canvas">
+<main id="content" role="main">
+    <!-- Article Description Section -->
+    <div class="container space-top-3 space-bottom-2 space-bottom-lg-3">
+        <div class="w-lg-60 mx-lg-auto">
+            <div class="mb-4">
+                <h1 class="h2">{{title}}</h1>
+            </div>
+
+                <div class="border-top border-bottom py-4 mb-5">
+                    <div class="row align-items-md-center">
+                        {{#primary_author}}
+                            <div class="col-md-7 mb-5 mb-md-0">
+                                <div class="media align-items-center">
+                                    <div class="avatar avatar-circle">
+                                        <img class="avatar-img" src="{{profile_image}}" alt="{{name}}">
+                                    </div>
+                                    <div class="media-body font-size-1 ml-3">
+                                        <span class="h6"><a href="{{url}}">{{name}}</a> <a rel="nofollow" href="{{twitter_url}}" target="_blank" class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</a></span>
+                        {{/primary_author}}
+                                        <span class="d-block text-muted"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time > <span class="bull">&bull;</span> {{reading_time}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="col-md-5">
+                            <div class="d-flex justify-content-md-end align-items-center">
+                                <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
+
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle ml-2" href="https://www.facebook.com/sharer/sharer.php?u={{encode url absolute="true"}}">
+                                <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle ml-2" href="https://twitter.com/intent/tweet?url={{encode url absolute="true"}}&text={{encode title}}">
+                                <i class="fab fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle ml-2" href="mailto:?subject=Upload Blog%3A {{encode title}}&body={{encode title}}%0D%0A%0D%0A{{encode excerpt}}%0D%0A%0D%0A{{encode url absolute="true"}}">
+                                <i class="fab fa-telegram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="article-content">
         {{content}}
+        </div>
+
+        <div class="w-lg-60 mx-lg-auto">
+            <div class="card bg-img-hero bg-dark text-white text-center p-4 my-5 abstract-shape-1">
+                <h4 class="text-white mb-3">Like what you're reading? Subscribe to our top stories.</h4>
+
+                <!-- Form -->
+                <form class="js-validate w-md-75 mx-md-auto">
+                    <div class="js-form-message">
+                        <div class="d-flex align-items-center">
+                            <label class="sr-only" for="subscribeSrArticle">Subscribe</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="subscribeSrArticle" placeholder="Your email" aria-label="Your email">
+                            </div>
+                            <button type="submit" class="btn btn-light ml-3">Subscribe</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Form -->
+            </div>
+
+            <p>We hope you enjoyed this article; if you have any questions or suggestions, please reach out to us!</p>
+
+            <p>Follow us on <a href="https://twitter.com/UploadHQ">Twitter</a> and <a href="https://www.facebook.com/UploadHQ">Facebook</a>.</p>
+
+            <!-- Badges -->
+            <div class="mt-5">
+                {{#foreach tags}}
+                    <a class="btn btn-xs btn-soft-secondary mb-1" href="{{url}}">{{name}}</a>
+                {{/foreach}}
+            </div>
+            <!-- End Badges -->
+
+            <!-- Share -->
+            <div class="row justify-content-sm-between align-items-sm-center mt-5">
+                <div class="col-sm-6 mb-2 mb-sm-0">
+                    <div class="d-flex align-items-center">
+                        <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
+
+                        <a rel="nofollow" class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="https://www.facebook.com/sharer/sharer.php?u={{encode url absolute="true"}}">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a rel="nofollow" class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="https://twitter.com/intent/tweet?url={{encode url absolute="true"}}&text={{encode title}}">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a rel="nofollow" class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="mailto:?subject=Upload Blog%3A {{encode title}}&body={{encode title}}%0D%0A%0D%0A{{encode excerpt}}%0D%0A%0D%0A{{encode url absolute="true"}}">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Share -->
+
+            {{#primary_author}}
+            <div class="media align-items-center border-top border-bottom py-5 mt-8">
+                <div class="avatar avatar-circle avatar-xl">
+                    <img class="avatar-img" src="{{profile_image}}" alt="{{name}}">
+                </div>
+                <div class="media-body ml-3">
+                    <small class="d-block small font-weight-bold text-cap">Written by</small>
+                    <h3 class="mb-0"><a href="{{url}}">{{name}}</a> <a rel="nofollow" href="{{twitter_url}}" target="_blank" class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</a></h3>
+                    {{#if bio}}
+                        <p class="mb-0">{{bio}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            {{/primary_author}}
+
+        </div>
     </div>
+    <!-- End Article Description Section -->
 
-    <footer class="gh-footer gh-canvas">
+    {{#get "posts" limit="4" filter="tags:[{{post.tags}}]+id:-{{post.id}}" include="tags" as |related|}}
+        {{#foreach related}}
+            {{#if @first}}
+                <div class="container space-bottom-2 space-bottom-lg-3">
+                    <div class="w-lg-75 mx-lg-auto">
+                        <div class="mb-3 mb-sm-5">
+                            <h3>Related stories</h3>
+                        </div>
+                        <div class="row">
 
-        <div class="gh-post-authors">
-            Written by {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{/foreach}}
+            {{/if}}
+                        <div class="col-md-6">
+                            <article class="border-bottom h-100 py-5">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        {{#primary_tag}}
+                                            <a class="d-block small font-weight-bold text-cap mb-2" href="{{url}}">{{name}}</a>
+                                        {{/primary_tag}}
+                                        <h4 class="mb-0">
+                                            <a class="text-inherit" href="{{url}}">{{title}}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-5">
+                                        <img class="img-fluid rounded" src="{{img_url feature_image size="s"}}" alt="{{title}}">
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+            {{#if @first}}
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        {{/foreach}}
+    {{/get}}
+
+
+    <!-- Subscribe Section -->
+    <div class="container space-bottom-2 space-bottom-lg-3">
+        <!-- Title -->
+        <div class="w-md-60 text-center mx-auto mb-7">
+            <h2>Stay in the know</h2>
+            <p>Get new posts from the Upload Blog delivered straight to your inbox.</p>
         </div>
+        <!-- End Title -->
 
-        {{!--
-        <section class="gh-post-comments">
-            If you want to embed comments, this is a good place to do it!
-        </section>
-        --}}
+        <div class="w-lg-40 mx-lg-auto">
+            <!-- Form -->
+            <form class="js-validate">
+                <div class="form-row">
+                    <div class="col-sm col-md-6 col-lg mb-2">
+                        <div class="js-form-message">
+                            <label class="sr-only" for="signupSrEmail">Your email</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" name="email" id="signupSrEmail" placeholder="Your email" aria-label="Your email" required
+                                       data-msg="Please enter a valid email address.">
+                            </div>
+                        </div>
+                    </div>
 
-    </footer>
-
-</article>
-
-<aside class="gh-readmore">
-    <div class="gh-readmore-inner gh-container">
-        <div class="gh-readmore-next">
-            {{#next_post}}<a href="{{url}}">{{> "icons/arrow-left"}} <h4>{{title}}</h4></a>{{/next_post}}
-        </div>
-        <div class="gh-readmore-prev">
-            {{#prev_post}}<a href="{{url}}">
-                <h4>{{title}}</h4> {{> "icons/arrow-right"}}
-            </a>{{/prev_post}}
+                    <div class="col-sm-auto">
+                        <button type="submit" class="btn btn-primary btn-block">Subscribe</button>
+                    </div>
+                </div>
+            </form>
+            <!-- End Form -->
         </div>
     </div>
-</aside>
+    <!-- End Subscribe Section -->
+</main>
 
 {{/post}}
