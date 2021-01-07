@@ -10,7 +10,7 @@
 
 <main id="content" role="main">
     <!-- Article Description Section -->
-    <div class="container space-top-3 space-bottom-2 space-bottom-lg-3">
+    <div class="container space-top-3 mb-8 mb-lg-11">
         <div class="w-lg-60 mx-lg-auto">
             <div class="mb-4">
                 <h1 class="h2">{{title}}</h1>
@@ -129,40 +129,39 @@
     </div>
     <!-- End Article Description Section -->
 
-    {{#get "posts" limit="4" filter="tags:[{{post.tags}}]+id:-{{post.id}}" include="tags" as |related|}}
-        {{#foreach related}}
-            {{#if @first}}
-                <div class="container space-bottom-2 space-bottom-lg-3">
-                    <div class="w-lg-75 mx-lg-auto">
-                        <div class="mb-3 mb-sm-5">
-                            <h3>Related stories</h3>
-                        </div>
-                        <div class="row">
-
-            {{/if}}
-                        <div class="col-md-6">
-                            <article class="border-bottom h-100 py-5">
-                                <div class="row justify-content-between">
-                                    <div class="col-6">
-                                        {{#primary_tag}}
-                                            <a class="d-block small font-weight-bold text-cap mb-2" href="{{url}}">{{name}}</a>
-                                        {{/primary_tag}}
-                                        <h4 class="mb-0">
-                                            <a class="text-inherit" href="{{url}}">{{title}}</a>
-                                        </h4>
-                                    </div>
-                                    <div class="col-5">
-                                        <img class="img-fluid rounded" src="{{img_url feature_image size="s"}}" alt="{{title}}">
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-            {{#if @first}}
-                        </div>
-                    </div>
+    {{#get "posts" include="tags,authors" limit="4" filter="id:-{{id}}+tag:{{primary_tag.slug}}" as |related|}}
+        {{#if related}}
+        <div class="container mb-8 mb-lg-11">
+            <div class="w-lg-75 mx-lg-auto">
+                <div class="mb-3 mb-sm-5">
+                    <h3>Related stories</h3>
                 </div>
-            {{/if}}
+                <div class="row">
+        {{/if}}
+        {{#foreach related}}
+                <div class="col-md-6">
+                    <article class="border-bottom h-100 py-5">
+                        <div class="row justify-content-between">
+                            <div class="col-6">
+                                {{#primary_tag}}
+                                    <a class="d-block small font-weight-bold text-cap mb-2" href="{{url}}">{{name}}</a>
+                                {{/primary_tag}}
+                                <h4 class="mb-0">
+                                    <a class="text-inherit" href="{{url}}">{{title}}</a>
+                                </h4>
+                            </div>
+                            <div class="col-5">
+                                <img class="img-fluid rounded" src="{{img_url feature_image size="s"}}" alt="{{title}}">
+                            </div>
+                        </div>
+                    </article>
+                </div>
         {{/foreach}}
+        {{#if related}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
     {{/get}}
 
 
