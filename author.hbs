@@ -2,47 +2,76 @@
 
 {{> "header_nav" }}
 
-<div class="gh-page">
-    <div class="gh-container">
+<main id="content" role="main">
+    {{#author}}
+    <div class="container space-top-3 space-bottom-2">
+        <div class="border-bottom w-md-75 w-lg-60 space-bottom-2 mx-md-auto">
+            <div class="media d-block d-sm-flex">
+                <div class="position-relative mx-auto mb-3 mb-sm-0 mr-sm-4" style="width: 160px; height: 160px;">
+                    <img class="img-fluid rounded-circle" src="{{profile_image}}" alt="{{name}}" width="160" height="160">
+                    <img class="bg-white position-absolute bottom-0 right-0 rounded-circle p-1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNS42IDI1LjYiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMjUuNiAxMi44YzAtMS0uNS0xLjktMS4zLTIuMy41LS43LjYtMS43LjMtMi42LS40LS45LTEuMi0xLjUtMi0xLjYuMi0uOS0uMS0xLjgtLjgtMi41LS43LS44LTEuNi0xLTIuNS0uOC0uMi0uOS0uOC0xLjctMS43LTItLjktLjQtMS45LS4yLTIuNi4zQzE0LjYuNSAxMy43IDAgMTIuOCAwYy0xIDAtMS44LjUtMi4zIDEuM0M5LjcuNyA4LjguNiA3LjkgMWMtLjkuNC0xLjUgMS4xLTEuNyAyLS44LS4yLTEuOC4xLTIuNS44LS43LjctLjkgMS42LS43IDIuNS0uOS4xLTEuNy43LTIgMS42LS40LjktLjIgMS45LjMgMi42Qy41IDExIDAgMTEuOSAwIDEyLjhjMCAxIC41IDEuOCAxLjIgMi4zLS41LjctLjYgMS43LS4zIDIuNi40LjkgMS4yIDEuNSAyIDEuNi0uMi45LjEgMS44LjcgMi41LjcuNyAxLjYuOSAyLjUuNy4yLjkuOCAxLjcgMS42IDIgLjkuNCAxLjkuMiAyLjYtLjMuNS43IDEuMyAxLjIgMi4zIDEuMiAxIDAgMS44LS41IDIuMy0xLjIuNy41IDEuNy42IDIuNi4zLjktLjQgMS41LTEuMiAxLjYtMiAuOS4yIDEuOC0uMSAyLjUtLjcuNy0uNy45LTEuNi43LTIuNS45LS4yIDEuNy0uOCAyLTEuNi40LS45LjItMS45LS4zLTIuNiAxLjEtLjUgMS42LTEuMyAxLjYtMi4zeiIvPjwvZGVmcz48dXNlIHhsaW5rOmhyZWY9IiNhIiBvdmVyZmxvdz0idmlzaWJsZSIgZmlsbD0iIzM3N2RmZiIvPjxjbGlwUGF0aCBpZD0iYiI+PHVzZSB4bGluazpocmVmPSIjYSIgb3ZlcmZsb3c9InZpc2libGUiLz48L2NsaXBQYXRoPjxwYXRoIGNsaXAtcGF0aD0idXJsKCNiKSIgb3BhY2l0eT0iLjEiIGQ9Ik0yMCAyNS42TDkuMiAxOC40bDMuNi0xMS4yIDEyLjggOS4xeiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xMi44IDcuMmwxLjggMy43IDQuMS42LTMgMi45LjcgNC0zLjYtMS45LTMuNiAxLjkuNy00LTMtMi45IDQuMS0uNnoiLz48L3N2Zz4=" alt="Icon" width="36" height="36" title="Top Writer">
+                </div>
 
-        {{#author}}
-        <header class="gh-page-head">
-            {{#if profile_image}}
-                <img class="gh-author-image" src="{{profile_image}}" alt="{{name}}" />
-            {{/if}}
+                <div class="media-body mt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h1 class="h3">{{name}}</h1>
+                        {{#if twitter}}
+                            <div class="d-block">
+                                <a href="{{twitter_url}}" target="_blank" class="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">Follow</a>
+                            </div>
+                        {{/if}}
+                    </div>
 
-            <h1>{{name}}</h1>
-            {{#if bio}}
-                <p>{{bio}}</p>
-            {{/if}}
-
-            <div class="gh-author-meta">
-                <div class="gh-author-links">
-                    {{#if website}}
-                        <a href="{{website}}" target="_blank" rel="noopener">Website</a>
-                    {{/if}}
-                    {{#if twitter}}
-                        <a href="{{twitter_url}}" target="_blank" rel="noopener">Twitter</a>
-                    {{/if}}
-                    {{#if facebook}}
-                        <a href="{{facebook_url}}" target="_blank" rel="noopener">Facebook</a>
-                    {{/if}}
+                    <p class="mb-0">{{bio}}</p>
                 </div>
             </div>
-
-            {{#if cover_image}}
-                <img class="gh-page-image" src="{{cover_image}}" alt="{{name}}" />
-            {{/if}}
-        </header>
-        {{/author}}
-
-        <div class="gh-postfeed">
-        {{#foreach posts visibility="all"}}
-
-            {{> "card"}} {{!-- partials/card.hbs --}}
-
-        {{/foreach}}
         </div>
-
     </div>
-</div>
+    {{/author}}
+
+    <!-- Blog Listing Section -->
+    <div class="container space-bottom-3">
+        <div class="w-md-75 w-lg-60 mx-md-auto">
+
+            {{#foreach posts visibility="all"}}
+
+                <article class="card mb-3 mb-sm-5">
+                    <a href="{{url}}">
+                        <img class="card-img-top" src="{{img_url feature_image size="l"}}" alt="{{title}}">
+                    </a>
+
+                    <div class="card-body">
+                        {{#if tags}}
+                            {{#foreach tags}}
+                                <a class="d-block small font-weight-bold text-cap mb-2" href="{{url}}">{{name}}</a>{{#if @last}}{{else}}, {{/if}}
+                            {{/foreach}}
+                        {{/if}}
+
+                        <h2 class="h3"><a class="text-inherit" href="{{url}}">{{title}}</a></h2>
+
+                        <p>{{excerpt}}</p>
+
+                        <div class="media align-items-center pt-5">
+                            {{#primary_author}}
+                            <div class="avatar-group">
+                                <div class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top">
+                                    <img class="avatar-img" src="{{profile_image}}" alt="{{name}}">
+                                </div>
+                            </div>
+                            {{/primary_author}}
+                            <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
+                                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time >&nbsp;<span class="bull">&bull;</span>&nbsp;{{reading_time}}
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            {{/foreach}}
+
+            <div class="space-bottom-2"></div>
+
+            {{pagination}}
+        </div>
+    </div>
+    <!-- End Blog Listing Section -->
+</main>
