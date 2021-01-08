@@ -2,36 +2,36 @@
 
 {{> "header_nav" }}
 
-<div class="gh-page">
-    <div class="gh-container">
+<div class="container space-top-3 space-bottom-2">
 
-        {{#tag}}
-        <header class="gh-page-head">
+    {{#tag}}
+    <header class="gh-page-head">
 
-            <h1>{{name}}</h1>
+        <h1>{{name}}</h1>
 
-            <p>
-                {{#if description}}
-                    {{description}}
-                {{else}}
-                    A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
-                {{/if}}
-            </p>
-
-            {{#if feature_image}}
-                <img class="gh-page-image" src="{{feature_image}}" alt="{{name}}" />
+        <p>
+            {{#if description}}
+                {{description}}
+            {{else}}
+                A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
             {{/if}}
+        </p>
 
-        </header>
-        {{/tag}}
+        {{#if feature_image}}
+            <img class="gh-page-image" src="{{feature_image}}" alt="{{name}}" />
+        {{/if}}
 
-        <div class="gh-postfeed">
-        {{#foreach posts visibility="all"}}
+    </header>
+    {{/tag}}
 
-            {{> "card"}} {{!-- partials/card.hbs --}}
+    <div class="gh-postfeed">
+    {{#foreach posts visibility="all"}}
 
-        {{/foreach}}
-        </div>
+        {{> "card"}} {{!-- partials/card.hbs --}}
 
+    {{/foreach}}
     </div>
+
+    {{pagination}}
+
 </div>
